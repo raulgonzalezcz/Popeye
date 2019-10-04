@@ -1,14 +1,17 @@
 from django.urls import path
+from django.conf.urls import include, url
 
 from . import views
+from rest_framework import routers
 
-from django.conf import settings 
-from django.conf.urls.static import static 
+router = routers.DefaultRouter(trailing_slash = False)
+router.register (r'api/establecimientos', views.EstablecimientoViewSet)
+router.register (r'api/todos-codigos', views.ConductorCuponesViewSet)
 
-urlpatterns = [
+urlpatterns = router.urls
+
+urlpatterns += [
     path('', views.index, name='index'),
+    url(r'^api/codigo-conductor/(?P<user_id>[0-9]+)/$', views.UserProductsList.as_view()),
+    
 ]
-
-if settings.DEBUG: 
-        urlpatterns += static(settings.MEDIA_URL, 
-                              document_root=settings.MEDIA_ROOT) 
