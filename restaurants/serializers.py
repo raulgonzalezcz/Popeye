@@ -34,7 +34,7 @@ class EstablecimientoSerializer(serializers.ModelSerializer):
 class ConductorCuponesSerializer(serializers.ModelSerializer):
     id = serializers.IntegerField(read_only=True)
     status = serializers.CharField(read_only=True)
-    id_usuario_genera = serializers.StringRelatedField(read_only=True)
+    #id_usuario_genera = serializers.StringRelatedField(read_only=True)
 
     class Meta:
         model = Log_codigo
@@ -57,3 +57,12 @@ class ConductorCuponesSerializer(serializers.ModelSerializer):
         instance.save()
         return instance
     """
+
+class ConductorSerializer(serializers.ModelSerializer):
+    id = serializers.IntegerField(read_only=True)
+
+    class Meta:
+        model = Conductor
+        fields = ('id', 'nombre', 'apellidos', 'correo_electronico', 'telefono', 'contrasena', 'id_tipo_usuario',
+            'codigo_activacion','fecha_inicio','tipo_compania', 'pais', 'estado', 'ciudad', 'status'
+        )

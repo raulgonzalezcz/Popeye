@@ -10,8 +10,14 @@ router.register (r'api/todos-codigos', views.ConductorCuponesViewSet)
 
 urlpatterns = router.urls
 
+app_patterns = {
+    path(r'app/establecimientos/', views.establecimiento_list),
+    path(r'app/conductor/', views.conductor_create),
+}
+
 urlpatterns += [
     path('', views.index, name='index'),
-    url(r'^api/codigo-conductor/(?P<user_id>[0-9]+)/$', views.UserProductsList.as_view()),
-    
+    url(r'^api/codigo-conductor/(?P<user_id>[0-9]+)/$', views.UserProductsList.as_view()),  
 ]
+
+urlpatterns += app_patterns
